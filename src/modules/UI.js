@@ -300,4 +300,45 @@ newListContainer.addEventListener('click', (e) => { //choosing projects one by o
 
 addTaskButton.addEventListener('click', openAddTaskModal)
 
+addTaskModalForm.addEventListener('submit', (e) => { //allowing to create task by using both enter key or add task button
+
+    e.preventDefault() //preventing unwanted entries
+  
+    const selectedList = lists.find((list) => list.id === selectedListId)
+  
+    if (selectedList === undefined) { //if the user does not choose any project, he/she is not allowed to enter a task (tasks are allocated in projects)
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please choose a project!',
+            footer: 'Hint: My Projects'
+        })
+    } else {
+        const addTaskModalNameInput = document.querySelector('[data-new-task-name-input]')
+        const taskName = addTaskModalNameInput.value
+        const lowerCasedTaskName = taskName.toLowerCase()
+  
+        if (selectedList.tasks.find((task) => (task.name).toLowerCase() === lowerCasedTaskName)) { //searches tasks among chosen project's tasks to prevent creating another task with the same name
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${taskName} is already among your project's tasks`,
+                footer: 'Hint: Task names should be different!'
+            })
+        } else {
+        const task = createTask()
+            Swal.fire({ //a special embedded function to have a customized alert box with better UI and styling
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your task has been added',
+                showConfirmButton: false,
+                timer: 1500
+                })
+            closeAddTaskModal()
+            selectedList.tasks.push(task)
+            saveAndRender()
+        }
+    }
+})
+
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
