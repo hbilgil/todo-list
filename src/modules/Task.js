@@ -93,6 +93,30 @@ function enlargeTask(task, selectedList) { //showing task card's other info whic
     taskInfoModalSelectedProject.textContent = `Project Name: ${selectedList.name}`;
 }
 
+function deleteTask(taskName, selectedList) { //deleting the selected task card without checking its checkbox and rendered as completed
+ 
+    Swal.fire({ // a special embedded function to have a customized alert box with better UI and styling
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+        Swal.fire(
+            'Deleted!',
+            'Your task has been deleted.',
+            'success'
+        )
+        selectedList.tasks = selectedList.tasks.filter((task) => task.name !== taskName)
+        taskName = null;
+        saveAndRender();
+       }
+    })
+}
+
 /*---Function exports---*/
 
 export { createTask, renderTasks, colorTasks, searchTask, updateTaskCounter }
