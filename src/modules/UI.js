@@ -429,4 +429,11 @@ searchInput.addEventListener('keyup', searchTask) //an option to search for task
 
 overlayWindow.addEventListener('click', closeAllModals) //no need to create cancel buttons for modals as the overlay window will do that when clicked..
 
+openSidebarButton.addEventListener('click', () => { //allowing the sidebar to be displayed when page is reached by mobile devices, as the sidebar is initially closed
+
+    const sidebar = document.getElementById('sidebar')
+    sidebar.classList.toggle('active') 
+
+})
+
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
