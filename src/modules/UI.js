@@ -207,10 +207,39 @@ const overlayWindow = document.getElementById('overlay-window')
 const openSidebarButton = document.getElementById('show-projects-nav')
 const addProjectModalNameInput = document.querySelector('[data-new-list-input]')
 
-} 
-
 /*---Project related event listener declarations---*/
 
-/*-----Function exports-----*/
+addProjectButton.addEventListener('click', openAddProjectModal)
+
+addProjectModalForm.addEventListener('submit', (e) => { //allowing to create project by using both enter key or add project button
+
+  e.preventDefault() //preventing unwanted entries
+
+  const projectName = addProjectModalNameInput.value
+  const lowerCasedProjectName = projectName.toLowerCase()
+
+  if (lists.find((list) => (list.name).toLowerCase() === lowerCasedProjectName)){ //searches projects in My projects box to prevent creating another project with the same name
+      Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${projectName} is already in your projects box`,
+          footer: 'Hint: Project names should be different!'
+        })
+  } else {
+    const project = createProject()
+    Swal.fire({ //a special embedded function to have a customized alert box with better UI and styling
+       position: 'top-end',
+       icon: 'success',
+       title: 'Your project has been added',
+       showConfirmButton: false,
+       timer: 1500
+    })
+    closeAddProjectModal()
+    lists.push(project)
+    saveAndRender()
+    }
+})
+
+} 
 
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
