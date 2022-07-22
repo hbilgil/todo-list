@@ -2,7 +2,6 @@
   "name": "todo-list",
   "version": "1.0.0",
   "description": "A dynamically created todo-list tasks which can be classified under a certain project name by using ES6 Modules &amp; Webpack bundling",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
@@ -19,6 +18,8 @@
   "homepage": "https://github.com/hbilgil/todo-list#readme",
   "devDependencies": {
     "css-loader": "^6.7.1",
+    "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0"
