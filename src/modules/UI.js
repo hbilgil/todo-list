@@ -436,4 +436,6 @@ openSidebarButton.addEventListener('click', () => { //allowing the sidebar to be
 
 })
 
+document.addEventListener('keydown', handleKeyboardInput) //onload event listener for escape key
+
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
