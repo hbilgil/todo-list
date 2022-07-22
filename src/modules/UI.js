@@ -21,6 +21,20 @@ function openAddProjectModal() {
   
     overlayWindow.classList.add('active')
     addProjectModal.classList.add('active')
+
+}
+
+function closeAddProjectModal() {
+
+    const addProjectModal = document.getElementById('add-project-modal')
+    const overlayWindow = document.getElementById('overlay-window')
+    const addProjectModalNameInput = document.querySelector('[data-new-list-input]')
+  
+    overlayWindow.classList.remove('active')
+    addProjectModal.classList.remove('active')
+  
+    addProjectModalNameInput.value = null //project name input will be cleared off for next project
+
 }
 
 /*-----Function exports-----*/
