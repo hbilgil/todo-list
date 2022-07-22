@@ -425,4 +425,8 @@ projectDisplayContainer.addEventListener('click', (e) => { //displaying and chec
 
 searchInput.addEventListener('keyup', searchTask) //an option to search for tasks will be helpful for users with numerous tasks
 
+/*---Miscellaneous event listener declarations---*/
+
+overlayWindow.addEventListener('click', closeAllModals) //no need to create cancel buttons for modals as the overlay window will do that when clicked..
+
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
