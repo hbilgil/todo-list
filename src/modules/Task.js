@@ -76,6 +76,23 @@ function renderTasks(selectedList) { //creating and appending task cards at DOM 
     })
 }
 
+function enlargeTask(task, selectedList) { //showing task card's other info which is NOT shown in task card area, when needed
+ 
+    openTaskInfoModal()
+
+    const taskInfoModalNamePara = document.querySelector('[data-task-card-name]')
+    const taskInfoModalDescriptionPara = document.querySelector('[data-task-card-description]')
+    const taskInfoModalDueDatePara = document.querySelector('[data-task-card-due-date]')
+    const taskInfoModalPriorityPara = document.querySelector('[data-task-card-priority]')
+    const taskInfoModalSelectedProject = document.querySelector('[data-task-card-project-name]')
+ 
+    taskInfoModalNamePara.textContent = `Name: ${task.name}`;
+    taskInfoModalDescriptionPara.textContent = `Detail: ${task.description}`;
+    taskInfoModalDueDatePara.textContent = `Due Date: ${task.date}`;
+    taskInfoModalPriorityPara.textContent = `Priority: ${task.priority}`;
+    taskInfoModalSelectedProject.textContent = `Project Name: ${selectedList.name}`;
+}
+
 /*---Function exports---*/
 
 export { createTask, renderTasks, colorTasks, searchTask, updateTaskCounter }
