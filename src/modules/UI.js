@@ -75,6 +75,61 @@ function closeAddTaskModal() {
 
 }
 
+function openEditTaskModal(task, taskId) {
+
+    const editTaskModal = document.getElementById('edit-task-modal')
+    const overlayWindow = document.getElementById('overlay-window')
+  
+    const editTaskModalForm = document.querySelector('[data-edit-task-form]')
+    const editTaskModalNameInput = document.querySelector('[data-input-task-name]')
+    const editTaskModalDescriptionInput = document.querySelector('[data-input-detail-name]')
+    const editTaskModalDateInput = document.querySelector('[data-input-due-date]')
+    const editTaskModalPriorityInput = document.querySelector('[data-input-priority]')
+  
+    editTaskModalNameInput.value = task.name;
+    editTaskModalDateInput.value = task.date;
+    editTaskModalPriorityInput.value = task.priority;
+    editTaskModalDescriptionInput.value = task.description;
+  
+    overlayWindow.classList.add('active')
+    editTaskModal.classList.add('active')
+  
+    let checkbox = document.getElementById(task.id)
+    let newLabel = checkbox.nextSibling.nextSibling
+    const selectedList = lists.find((list) => list.id === selectedListId)
+    const selectedTask = selectedList.tasks.find((task) => task.id === taskId)
+  
+    /*---Function scope Event Listener declaration---*/
+  
+    editTaskModalForm.addEventListener("submit", (e) => {
+  
+        e.preventDefault() //preventing unwanted entries
+  
+        const editedTaskName = editTaskModalNameInput.value
+        const lowerCasedEditedTaskName = editedTaskName.toLowerCase()
+  
+        if (selectedTask.name.toLowerCase() === lowerCasedEditedTaskName || selectedList.tasks.find((task) => (task.name).toLowerCase() === lowerCasedEditedTaskName)) {
+        //if (selectedList.tasks.find((task) => (task.name).toLowerCase() === lowerCasedEditedTaskName)) { //searches tasks among chosen project's tasks to prevent creating another task with the same name
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${editedTaskName} is already among your project's tasks`,
+                footer: 'Hint: Task names should be different!'
+            })
+        } else {
+        selectedTask.name = editTaskModalNameInput.value;
+        selectedTask.date = editTaskModalDateInput.value;
+        selectedTask.priority = editTaskModalPriorityInput.value;
+        selectedTask.description = editTaskModalDescriptionInput.value;
+        newLabel.innerHTML = `<span class="task-card-text"></span>${selectedTask.name}<br>${selectedTask.date}`;
+            closeEditTaskModal()
+            saveAndRender()
+        }
+        location.reload() // after opening edit modal, cache has to be cleared of to prevent recursive operation. I could not find any other solution. but this fixed the problem :) 
+    })
+
+}
+
 /*-----Function exports-----*/
 
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
