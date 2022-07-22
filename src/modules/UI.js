@@ -188,6 +188,14 @@ function handleKeyboardInput(e) { //Enables users to close modals by Escape key
 
 }
 
+/*-----EVENT LISTENER DECLARATIONS-----*/
+
+function initAddEventListeners() { //a function to be used index.js initiating homepage add event listeners
+
+} 
+
+/*---Project related event listener declarations---*/
+
 /*-----Function exports-----*/
 
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
