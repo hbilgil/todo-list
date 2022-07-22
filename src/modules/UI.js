@@ -287,4 +287,13 @@ deleteProjectButton.addEventListener('click', () => { //deleting the chosen proj
     }
 })
 
+newListContainer.addEventListener('click', (e) => { //choosing projects one by one in project lists container
+    
+    if(e.target.tagName.toLowerCase() === "li") {
+        selectedListId = e.target.dataset.listId
+        saveAndRender()
+    }
+
+})
+
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
