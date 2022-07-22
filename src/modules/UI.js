@@ -150,6 +150,16 @@ function openTaskInfoModal() {
 
 }
 
+function closeTaskInfoModal() {
+
+    const taskInfoModal = document.getElementById('task-info-modal')
+    const overlayWindow = document.getElementById('overlay-window')
+  
+    overlayWindow.classList.remove('active')
+    taskInfoModal.classList.remove('active')
+
+}
+
 /*-----Function exports-----*/
 
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
