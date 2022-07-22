@@ -117,6 +117,27 @@ function deleteTask(taskName, selectedList) { //deleting the selected task card 
     })
 }
 
+function colorTasks(selectedList) { // coloring the task card's left border and checkbox according to its priority
+ 
+    const taskCard = [...document.querySelectorAll('.task-card')];
+    const checkbox = [...document.querySelectorAll(".task-card-check-box")];
+
+    for (let i = 0; i < taskCard.length; i++) {
+      for (let i = 0; i < selectedList.tasks.length; i++) {
+        if (selectedList.tasks[i].priority === "high") { 
+          taskCard[i].style.borderLeft = "6px solid red"
+          checkbox[i].style.border = "0.15em solid red"
+        } else if (selectedList.tasks[i].priority === "moderate") {
+          taskCard[i].style.borderLeft = "6px solid gold"
+          checkbox[i].style.border = "0.15em solid gold";
+        } else {
+          taskCard[i].style.borderLeft = "6px solid #7cfc00";
+          checkbox[i].style.border = "0.15em solid #7cfc00";
+        }
+      }
+    }
+}
+
 /*---Function exports---*/
 
 export { createTask, renderTasks, colorTasks, searchTask, updateTaskCounter }
