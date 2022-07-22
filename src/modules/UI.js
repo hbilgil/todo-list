@@ -192,6 +192,21 @@ function handleKeyboardInput(e) { //Enables users to close modals by Escape key
 
 function initAddEventListeners() { //a function to be used index.js initiating homepage add event listeners
 
+/*---UI variable declarations---*/
+
+const addProjectButton = document.getElementById('add-project-button')
+const addProjectModalForm = document.querySelector('[data-new-list-form]')
+const deleteProjectButton = document.getElementById('delete-project-button');
+const newListContainer = document.querySelector('[data-lists]');
+const addTaskButton = document.getElementById('add-task-button')
+const searchInput = document.querySelector('.search-input');
+const addTaskModalForm = document.querySelector('[data-new-task-form]')
+const deleteCompletedTasksButton = document.querySelector('[data-delete-completed-tasks-btn]');
+const projectDisplayContainer = document.querySelector('[data-list-display-container]')
+const overlayWindow = document.getElementById('overlay-window')
+const openSidebarButton = document.getElementById('show-projects-nav')
+const addProjectModalNameInput = document.querySelector('[data-new-list-input]')
+
 } 
 
 /*---Project related event listener declarations---*/
