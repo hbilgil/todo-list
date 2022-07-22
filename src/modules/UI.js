@@ -160,6 +160,27 @@ function closeTaskInfoModal() {
 
 }
 
+/*---Miscellaneous display function declarations (2 functions)---*/
+
+function closeAllModals() { //4 different modals will be handled dynamically by this function
+
+    const addTaskModal = document.getElementById('add-task-modal')
+    const editTaskModal = document.getElementById('edit-task-modal')
+    const taskInfoModal = document.getElementById('task-info-modal')
+  
+    closeAddProjectModal()
+    if (addTaskModal) {
+      closeAddTaskModal()
+    }
+    if (editTaskModal) {
+      closeEditTaskModal()
+    }
+    if (taskInfoModal) {
+      closeTaskInfoModal()
+    }
+
+}
+
 /*-----Function exports-----*/
 
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
