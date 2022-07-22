@@ -240,8 +240,6 @@ addProjectModalForm.addEventListener('submit', (e) => { //allowing to create pro
     }
 })
 
-}
-
 deleteProjectButton.addEventListener('click', () => { //deleting the chosen project completely
    
     const selectedList = lists.find((list) => list.id === selectedListId)
@@ -437,5 +435,7 @@ openSidebarButton.addEventListener('click', () => { //allowing the sidebar to be
 })
 
 document.addEventListener('keydown', handleKeyboardInput) //onload event listener for escape key
+
+}
 
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
