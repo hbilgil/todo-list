@@ -423,4 +423,6 @@ projectDisplayContainer.addEventListener('click', (e) => { //displaying and chec
 
 })
 
+searchInput.addEventListener('keyup', searchTask) //an option to search for tasks will be helpful for users with numerous tasks
+
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
