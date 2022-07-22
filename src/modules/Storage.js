@@ -11,6 +11,11 @@ const LOCAL_STORAGE_SELECTED_PROJECT_LIST_ID_KEY = 'task.selectedListId' //all p
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_NEW_PROJECT_LIST_KEY)) || [] //if the local store is empty, an empty array will be used for projects
 let selectedListId = localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJECT_LIST_ID_KEY)
 
+function saveAndRender() { //after every creates, deletes or updates they are all saved in and kept refreshed
+
+    saveInLocalStore()
+    renderProjectList()
+}
 
 /*-----Function and Element exports-----*/
 
