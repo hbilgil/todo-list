@@ -17,6 +17,12 @@ function saveAndRender() { //after every creates, deletes or updates they are al
     renderProjectList()
 }
 
+function saveInLocalStore() {
+
+    localStorage.setItem(LOCAL_STORAGE_NEW_PROJECT_LIST_KEY, JSON.stringify(lists))
+    localStorage.setItem(LOCAL_STORAGE_SELECTED_PROJECT_LIST_ID_KEY, JSON.stringify(selectedListId))
+}
+
 /*-----Function and Element exports-----*/
 
 export { lists, selectedListId, saveAndRender }
