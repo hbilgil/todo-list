@@ -130,6 +130,16 @@ function openEditTaskModal(task, taskId) {
 
 }
 
+function closeEditTaskModal() {
+
+    const editTaskModal = document.getElementById('edit-task-modal')
+    const overlayWindow = document.getElementById('overlay-window')
+  
+    overlayWindow.classList.remove('active')
+    editTaskModal.classList.remove('active')
+
+}
+
 /*-----Function exports-----*/
 
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
