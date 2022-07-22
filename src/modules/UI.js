@@ -181,6 +181,13 @@ function closeAllModals() { //4 different modals will be handled dynamically by 
 
 }
 
+function handleKeyboardInput(e) { //Enables users to close modals by Escape key
+
+    if (e.key === 'Escape') 
+    closeAllModals()
+
+}
+
 /*-----Function exports-----*/
 
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
