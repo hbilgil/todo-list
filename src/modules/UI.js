@@ -51,6 +51,28 @@ function openAddTaskModal() {
   
     overlayWindow.classList.add('active')
     addTaskModal.classList.add('active')
+
+}
+
+function closeAddTaskModal() {
+
+    const addTaskModal = document.getElementById('add-task-modal')
+    const overlayWindow = document.getElementById('overlay-window')
+  
+    overlayWindow.classList.remove('active')
+    addTaskModal.classList.remove('active')
+  
+    const addTaskModalNameInput = document.querySelector('[data-new-task-name-input]')
+    const addTaskModalDescriptionInput = document.querySelector('[data-new-task-detail-input]')
+    const addTaskModalDueDateInput = document.querySelector('[data-new-task-date-input]')
+    const addTaskModalPriorityInput = document.querySelector('[data-new-task-priority-input]')
+  
+    //task modal inputs will be cleared off for next task
+    addTaskModalNameInput.value = null
+    addTaskModalDescriptionInput.value = null
+    addTaskModalDueDateInput.value = null
+    addTaskModalPriorityInput.value = null
+
 }
 
 /*-----Function exports-----*/
