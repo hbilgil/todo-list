@@ -138,6 +138,22 @@ function colorTasks(selectedList) { // coloring the task card's left border and 
     }
 }
 
+function searchTask() { // a function to search for a task in the project folder by Search Input
+ 
+    let searchValue = document.querySelector('.search-input').value.toUpperCase(); // turning into a standardized letter case to prevent errors
+    let taskList = document.querySelector('[data-tasks]');
+    let task = taskList.querySelectorAll('.task-card');
+  
+    for(let i=0; i < task.length; i++) { //looping through task-cards
+      let taskTitle = task[i].getElementsByTagName('label')[0];
+      if(taskTitle.textContent.toUpperCase().indexOf(searchValue) > -1) {
+        task[i].style.display = '';
+      } else {
+        task[i].style.display = 'none';
+      }
+    }
+}
+
 /*---Function exports---*/
 
 export { createTask, renderTasks, colorTasks, searchTask, updateTaskCounter }
