@@ -154,6 +154,13 @@ function searchTask() { // a function to search for a task in the project folder
     }
 }
 
+function updateTaskCounter(selectedList) { //updating and showing the total # of incomplete tasks when task is checked or deleted completely
+    const projectCounter = document.querySelector('[data-list-counter]')
+    const incompleteTaskCount = selectedList.tasks.filter((task) => !task.complete).length
+    const taskInfoString = incompleteTaskCount === 1 ? 'task' : 'tasks'
+    projectCounter.innerText = `${incompleteTaskCount} ${taskInfoString} remained`
+}
+
 /*---Function exports---*/
 
 export { createTask, renderTasks, colorTasks, searchTask, updateTaskCounter }
