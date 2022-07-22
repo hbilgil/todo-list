@@ -341,4 +341,73 @@ addTaskModalForm.addEventListener('submit', (e) => { //allowing to create task b
     }
 })
 
+deleteCompletedTasksButton.addEventListener('click', () => { //allowing the user to delete ALL completed tasks without deleting one by one
+
+    const selectedList = lists.find((list) => list.id === selectedListId); 
+    const taskCard = [...document.querySelectorAll('.task-card')];
+  
+    if(selectedList === undefined) { //first check whether a project has been chosen
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please choose a project!',
+        footer: 'Hint: My Projects'
+    })
+    } else {
+      if (selectedList.tasks.length === 0) { //second check whether the list has tasks or NOT
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You do not have any tasks to be completed, yet!',
+            footer: "Hint: Add Task Button"
+        })
+    } else {
+  
+    for (let i = 0; i < taskCard.length; i++) { //for loop among all taskCards
+      for (let i = 0; i < selectedList.tasks.length; i++) { //for loop among all selectedList tasks
+        if (selectedList.tasks[i].complete === false) { //looking whether task.complete is false or NOT
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'You have not completed any tasks, yet!',
+                footer: "Hint: Task's checkbox should be checked to be completed"
+            })
+        } else {
+                Swal.fire({ //a special embedded function to have a customized alert box with better UI and styling
+                    title: 'Are you sure?',
+                    text: "Your tasks will be COMPLETELY deleted!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    Swal.fire( //a special embedded function to have a customized alert box with better UI and styling
+                        'Deleted!',
+                        'Your tasks have been deleted.',
+                        'success'
+                    )
+                    const selectedList = lists.find((list) => list.id === selectedListId);    
+                    selectedList.tasks = selectedList.tasks.filter((task) => !task.complete);
+                    saveAndRender()
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        Swal.fire( //a special embedded function to have a customized alert box with better UI and styling
+                        'Cancelled',
+                        'Your tasks are safe :)',
+                        'error'
+                        )
+                        }
+                    })
+                }    
+            }
+        }
+    }
+  }
+})
+
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
