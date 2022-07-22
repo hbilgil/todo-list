@@ -71,8 +71,14 @@ function renderProjectList() { //Projects and their tasks will be kept, displaye
         clearElement(taskList) //a function to keep task container updated
         renderTasks(selectedList) //tasks will be added into the DOM
         colorTasks(selectedList); //tasks will have different colors based on their "priorities" (red for high, yellow for moderate and green for low priorities)
-
         }
+    }
+}
+
+function clearElement(element) { //a function to keep list container updated
+
+    while (element.firstChild) { //checks if the project container has at least 1 child element, otherwise returns..
+        element.removeChild(element.firstChild)
     }
 }
 
