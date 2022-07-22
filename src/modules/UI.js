@@ -240,6 +240,51 @@ addProjectModalForm.addEventListener('submit', (e) => { //allowing to create pro
     }
 })
 
-} 
+}
+
+deleteProjectButton.addEventListener('click', () => { //deleting the chosen project completely
+   
+    const selectedList = lists.find((list) => list.id === selectedListId)
+  
+    if (selectedList === undefined) { //if the user does not choose any project, he/she is not allowed to delete any project
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please choose a project!',
+            footer: 'Hint: My Projects'
+        })
+    } else {
+        Swal.fire({ //a special embedded function to have a customized alert box with better UI and styling
+            title: 'Are you sure?',
+            text: "Your project will be COMPLETELY deleted!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire( //a special embedded function to have a customized alert box with better UI and styling
+                'Deleted!',
+                'Your project has been deleted.',
+                'success'
+            )
+            lists = lists.filter((list) => list.id !== selectedListId);
+            selectedListId = null;
+            saveAndRender();
+            } else if (
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              Swal.fire( //a special embedded function to have a customized alert box with better UI and styling
+                'Cancelled',
+                'Your project is safe :)',
+                'error'
+              )
+            }
+        })
+    }
+})
 
 export { openEditTaskModal, openTaskInfoModal, initAddEventListeners }
