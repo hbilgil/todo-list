@@ -11,6 +11,8 @@ import { createTask, searchTask, updateTaskCounter } from './Task'
 
 /*-----UI Related Function Declarations (10 Functions)-----*/
 
+/*---Project related display function declarations (2 functions)---*/
+
 function openAddProjectModal() {
 
     const addProjectModal = document.getElementById('add-project-modal')
@@ -35,6 +37,20 @@ function closeAddProjectModal() {
   
     addProjectModalNameInput.value = null //project name input will be cleared off for next project
 
+}
+
+/*---Tasks related display function declarations (6 functions)---*/
+
+function openAddTaskModal() {
+
+    const addTaskModal = document.getElementById('add-task-modal')
+    const overlayWindow = document.getElementById('overlay-window')
+  
+    const addTaskModalForm = document.querySelector('[data-new-task-form]')
+    addTaskModalForm.reset() //values inside the form will be deleted if any..
+  
+    overlayWindow.classList.add('active')
+    addTaskModal.classList.add('active')
 }
 
 /*-----Function exports-----*/
