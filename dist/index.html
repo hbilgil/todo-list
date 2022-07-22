@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo-list</title>
+    <link rel="shortcut icon" href="./images/todo.jpg" />
+    <script src="https://kit.fontawesome.com/8fc16b2efe.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+
+    <header class="header">
+
+        <button class="show-project-nav" id="show-projects-nav">
+
+            <i class="fas fa-bars" aria-hidden="true"></i>
+
+        </button>
+
+        <div class="logo-div">
+
+            <img class="logo-img" src="./images/todo.jpg" alt="logo-image">
+
+            <h1 class="logo-caption"><span>ToDo</span>List</h1>
+
+        </div>
+
+        <div class="logo-copyright">
+
+            <p>logo-design by 
+
+                <a href=https://vecteezy.com target="_blank"> vecteezy</a>
+
+            </p>
+        
+        </div>
+
+    </header>
+
+    <div class="main">
+
+        <div class="sidebar" id="sidebar">
+    
+            <div class="newly-created-projects" id="new-projects">
+    
+                <h1 class="newly-created-projects-heading">My Projects</h1>
+
+                <ul class="newly-created-projects-list" data-lists>
+
+                </ul>
+    
+            </div>
+    
+            <button class="icon-btn add-btn" id="add-project-button">
+
+                <div class="add-icon"></div>
+
+                <div class="btn-txt">Add Project</div>
+
+            </button>
+
+            <button class="delete-project-button" id="delete-project-button">
+
+                <span>X</span><span>Delete Project</span>
+
+            </button>
+
+        </div>
+
+        <div class="tasks-container">
+
+            <div class="search-box">
+    
+                <input type="text" class="search-input" placeholder="Search task">
+
+                <a href="#" class="search-btn">
+
+                    <i class="fas fa-search"></i>
+
+                </a>
+    
+            </div>
+
+            <div class="task-buttons">
+
+                <button class="add-task-button" id="add-task-button">
+
+                    <span>+</span><span>Add Task</span>
+    
+                </button>
+    
+                <button class="delete-completed-tasks-button" data-delete-completed-tasks-btn>
+    
+                    <span>X</span><span>Delete Completed Tasks</span>
+    
+                </button>
+
+            </div>
+    
+            <div class="tasks" id="tasks" data-list-display-container>
+
+                <div class="task-heading-div">
+
+                    <h3 class="tasks-title" data-list-title></h3>
+
+                    <p class="task-count" data-list-counter></p>
+
+                </div>
+
+                <div class="tasks-list" id="tasks-list" data-tasks>
+
+                </div>
+
+            </div>
+    
+        </div>
+
+    </div>
+
+    <footer class="footer">
+
+        <p>
+            Copyright ©
+        
+            <script>
+                document.write(new Date().getFullYear()) 
+            </script>  <!--the date is loaded by JavaScript methods dinamically-->
+
+            <a href="https://github.com/hbilgil" target="_blank"> Halil Bilgil </a> <!--Please have a look at my github account and like my content.Thanks!..-->
+        
+        </p>
+
+    </footer>
+    
+    <div class="overlay-window" id="overlay-window"></div> <!--the overlay window will be invisible until it is invoked by JavaScript function dynamically-->
+
+    <div class="add-project-modal" id="add-project-modal"> <!--the project add modal will be invisible until it is invoked by JavaScript function dynamically-->
+            
+        <h2 class="add-project-modal-heading">Add New Project</h2>
+            
+        <form class="add-project-modal-form" data-new-list-form>
+
+            <input type="text" class="add-project-modal-input" placeholder="Project name" required data-new-list-input>
+
+            <input type="submit" value="Add Project" id="add-project-modal-addBtn">
+
+        </form>
+        
+    </div>
+
+    <div class="add-task-modal" id="add-task-modal"> <!--the edit task modal will be invisible until it is invoked by JavaScript function dynamically-->
+
+        <h2 class="add-task-modal-heading">Add New Task</h2>
+
+        <form class="add-task-modal-form" data-new-task-form>
+
+            <input type="text" class="add-task-modal-input" id="add-task-modal-name-input" placeholder="Task name" required data-new-task-name-input>
+
+            <textarea class="add-task-modal-input" id="add-task-modal-detail-input" maxlength="100" placeholder="Task Details" required data-new-task-detail-input></textarea>
+
+            <div class="add-task-modal-date">
+
+                <p>Due Date:</p>
+
+                <input type="date" id="add-task-modal-date-input" class="add-task-modal-date-input" required data-new-task-date-input>
+
+            </div>
+
+            <div class="add-task-modal-priority">
+
+                <p>Priority:</p>
+
+                <select id="add-task-modal-priority-input" data-new-task-priority-input>
+
+                    <option value="high">high</option>
+                    <option value="moderate">moderate</option>
+                    <option value="low">low</option>
+
+                </select>
+
+            </div>
+
+            <input type="submit" value="Add Task" id="add-task-modal-addBtn">
+
+        </form>
+        
+    </div>
+    
+    <div class="edit-task-modal" id="edit-task-modal"> <!--the edit task modal will be invisible until it is invoked by JavaScript function dynamically-->
+
+        <h2 class="edit-task-modal-heading">Edit Task</h2>
+
+        <form class="edit-task-modal-form" data-edit-task-form>
+
+            <input type="text" class="edit-task-modal-input" placeholder="Task name" required data-input-task-name>
+
+            <textarea class="edit-task-modal-input" maxlength="100" placeholder="Task Details" required data-input-detail-name></textarea>
+
+            <div class="edit-task-modal-date">
+
+                <p>Due Date:</p>
+
+                <input type="date" class="edit-task-modal-date-input" required data-input-due-date>
+
+            </div>
+
+            <div class="edit-task-modal-priority">
+
+                <p>Priority:</p>
+
+                <select id="edit-task-modal-priority" data-input-priority>
+
+                    <option value="high">high</option>
+                    <option value="moderate">moderate</option>
+                    <option value="low">low</option>
+
+                </select>
+
+            </div>
+
+            <input type="submit" value="Save" id="edit-task-modalBtn">
+
+        </form>
+        
+    </div>
+
+    <div class="task-info-modal" id="task-info-modal"> <!--the project add modal will be invisible until it is invoked by JavaScript function dynamically-->
+            
+        <h2 class="task-info-modal-heading">Task Card</h2>
+            
+        <div class="task-info-modal-text">
+
+            <p class="task-info-modal-name-para" data-task-card-name></p>
+
+            <p class="task-info-modal-description-para" data-task-card-description></p>
+            
+            <p class="task-info-modal-due-date-para" data-task-card-due-date></p>    
+
+            <p class="task-info-modal-priority-para" data-task-card-priority></p> 
+
+            <p class="task-info-modal-project-name-para" data-task-card-project-name></p> 
+
+        </div>
+        
+    </div>
+
+    <template id="task-card-template">
+
+        <div class="task-card">
+
+            <div class="flex-1">
+
+                <input class="task-card-check-box" type="checkbox" id="checkBox">
+
+                <label>
+                    <span class="task-card-text"></span>
+                </label>
+
+            </div>
+
+            <div class="flex-2">
+
+
+            </div>
+
+        </div>
+
+    </template>
+
+    <script src="main.js"></script>
+
+  </body>
+
+</html>
